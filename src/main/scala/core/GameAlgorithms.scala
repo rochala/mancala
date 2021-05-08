@@ -79,7 +79,7 @@ class AlphaBetaPlayer(
                   newBeta
                 )
               ).maxBy(_._2)
-              newAlpha = List(alpha, value._2).max
+              newAlpha = if (alpha > value._2) alpha else value._2
               if (newAlpha >= newBeta) {
                 return value
               }
@@ -101,7 +101,7 @@ class AlphaBetaPlayer(
                   newBeta
                 )
               ).minBy(_._2)
-              newBeta = List(newBeta, value._2).min
+              newBeta = if (alpha < value._2) alpha else value._2
               if (newBeta <= newAlpha) {
                 return value
               }
